@@ -1,10 +1,7 @@
 import mongoose from 'mongoose';
-import { randomBytes } from 'crypto';
-import { isPasswordHash } from '../routes/Auth.js';
+
 import mongooseAutoPopulate from 'mongoose-autopopulate';
 
-const generateRandomToken = () =>
-	randomBytes(48).toString('base64').replace(/[+/]/g, '.');
 
 const schema = new mongoose.Schema(
 	{
@@ -26,10 +23,6 @@ const schema = new mongoose.Schema(
 		phoneNumber: {
 			type: String,
 			trim: true,
-		},
-		token: {
-			type: String,
-			default: generateRandomToken,
 		},
 		contacts: [
 			{

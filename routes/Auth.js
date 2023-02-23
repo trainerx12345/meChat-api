@@ -1,14 +1,9 @@
 import { Router } from 'express';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
-import { randomBytes } from 'crypto';
 
 const salt = 10;
 const router = Router();
-
-export const generateRandomToken = () =>
-	randomBytes(48).toString('base64').replace(/[+/]/g, '.');
-
 export const generatePasswordHash = (password) => {
 	const hash = bcrypt.hash(password, salt);
 	return hash;
