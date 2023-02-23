@@ -5,15 +5,15 @@ const bcrypt = require('bcrypt');
 
 const salt = 10;
 
-export const generatePasswordHash = (password) => {
+module.exports = generatePasswordHash = (password) => {
 	const hash = bcrypt.hash(password, salt);
 	return hash;
 };
-export const validatePassword = async (password, hash) => {
+module.exports = validatePassword = async (password, hash) => {
 	const result = await bcrypt.compare(password, hash);
 	return result;
 };
-export const isPasswordHash = (hash) => {
+module.exports = isPasswordHash = (hash) => {
 	if (!hash || hash.length !== 60) return false;
 	try {
 		bcrypt.getRounds(hash);
