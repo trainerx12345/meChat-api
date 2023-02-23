@@ -5,10 +5,10 @@ const User = require('../models/User.js');
 //Fetch all User
 router.get('/', async (request, response) => {
 	try {
-		const results = await User.find();
-		response.json(results);
+		const fetch = await User.find();
+		response.status(200).send({ fetch });
 	} catch (error) {
-		return response.status(400).json({ error });
+		return response.status(401).json({ error });
 	}
 });
 

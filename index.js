@@ -36,7 +36,6 @@ server.get('/', (request, response) => {
 
 //ENDPOINTS
 server.use(routes);
-
 server.listen(process.env.PORT, () => {
 	console.log(`Server running on port ${process.env.PORT}`);
 });

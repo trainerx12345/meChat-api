@@ -21,6 +21,10 @@ const schema = new mongoose.Schema(
 			type: String,
 			trim: true,
 		},
+		avatar: {
+			type: String,
+			trim: true,
+		},
 		contacts: [
 			{
 				type: Array,
@@ -37,4 +41,4 @@ const schema = new mongoose.Schema(
 );
 
 schema.plugin(mongooseAutoPopulate);
-module.exports=mongoose.model('User',schema);
+module.exports = mongoose.model('User', schema);

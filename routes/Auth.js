@@ -80,7 +80,6 @@ router.put('/password/:id', async (request, response) => {
 router.post(`/logout`, async (request, response) => {
 	const { email } = request.body;
 	const user = await User.findOne({ email }).exec();
-	user.token = generateRandomToken();
 	if (user) {
 		response.status(204).json({ status: 'logout', data: user });
 	}
