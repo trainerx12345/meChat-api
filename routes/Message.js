@@ -3,7 +3,7 @@ const router = express.Router();
 const Message = require('../models/Message.js');
 
 //Fetch a Message
-router.get('api/v1/message/:id', async (request, response) => {
+router.get('/:id', async (request, response) => {
 	Exam.findOne({ _id: request.params.id })
 		.then((result) => response.status(200).send(result))
 		.catch((error) => response.status(404).send(error));
