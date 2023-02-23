@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongooseAutoPopulate = reqiure('mongoose-autopopulate');
+const mongooseAutoPopulate = require('mongoose-autopopulate');
 
 const schema = new mongoose.Schema(
 	{
