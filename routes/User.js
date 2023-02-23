@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/User.js');
 
 //Fetch all User
-router.get('', async (request, response) => {
+router.get('/', async (request, response) => {
 	try {
 		const results = await User.find();
 		response.json(results);
@@ -37,4 +37,4 @@ router.put('/:id', async (request, response) => {
 	}
 });
 
-module.exports =  router;
+module.exports = router;

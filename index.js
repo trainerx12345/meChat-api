@@ -18,11 +18,12 @@ server.use(helmet());
 const routes = require('./routes/index.js');
 
 //DEPRECATION WARNING SOLN
-server.use(express.json);
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
 server.enable('json spaces');
 server.enable('strict routing');
-mongoose.set('strictQuery', false);
 
+mongoose.set('strictQuery', false);
 //DATABASE CONNECTION
 mongoose.connect(process.env.URI, {
 	useNewUrlParser: true,
@@ -30,7 +31,7 @@ mongoose.connect(process.env.URI, {
 });
 
 server.get('/', (request, response) => {
-	response.send('Welcome to me-chat API');
+	response.send('Welcome to meChat API');
 });
 
 //ENDPOINTS

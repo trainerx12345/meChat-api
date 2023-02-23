@@ -10,7 +10,7 @@ router.get('/:id', async (request, response) => {
 });
 
 //Fetch all the messages
-router.get('', async (request, response) => {
+router.get('/', async (request, response) => {
 	const { messageId } = request.body;
 	try {
 		const result = await Message.find({ messageId }).toArray();
@@ -21,7 +21,7 @@ router.get('', async (request, response) => {
 });
 
 // Add a Message to the conversation
-router.post('', async (req, res) => {
+router.post('/', async (req, res) => {
 	const { messageId } = request.body;
 	const result = await Message.findOne({ messageId }).exec();
 	if (!result) {
