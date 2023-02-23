@@ -33,4 +33,4 @@ router.post('', async (req, res) => {
 		response.status(400).json({ status: 'Bad Request' });
 	}
 });
-export default router;
+module.exports =  router;

@@ -85,4 +85,4 @@ router.post(`/logout`, async (request, response) => {
 		response.status(204).json({ status: 'logout', data: user });
 	}
 });
-export default router;
+module.exports = router;

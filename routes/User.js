@@ -37,4 +37,4 @@ router.put('/:id', async (request, response) => {
 	}
 });
 
-export default router;
+module.exports =  router;

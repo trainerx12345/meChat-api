@@ -10,4 +10,4 @@ router.use(`api/v1/auth`, authRouter);
 router.use(`'api/v1/user`, usersRouter);
 router.use(`'api/v1/message`, messageRouter);
 
-export default router;
+module.exports =  router;

@@ -33,6 +33,4 @@ const schema = new mongoose.Schema(
 
 schema.plugin(mongooseAutoPopulate);
 
-const Message = mongoose.model('Message', schema);
-
-export default Message;
+module.exports = mongoose.model('Message', schema);
