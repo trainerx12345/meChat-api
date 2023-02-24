@@ -57,6 +57,7 @@ router.post('/login', async (request, response) => {
 	try {
 		if (user && passwordValid) {
 			const userId = user._id;
+			await User.updateOne({ isOnline: true });
 			return response.status(201).send({ userId, user });
 		}
 		return response.status(400).json('Invalid Credentials');
@@ -72,6 +73,16 @@ router.put('/password/:id', async (request, response) => {
 		const existingPassword = user[0].password;
 		const updateUser = await User.updateOne({ password: newPassword });
 		response.status(204).send({ updateUser });
+	} catch (error) {
+		response.status(400).json({ error });
+	}
+});
+
+router.put('/offline/:id', async (request, response) => {
+	const user = await User.findOne({ _id: request.params.id }).exec();
+	try {
+		const updateUser = await User.updateOne({ isOnline: false });
+		response.status(204).send({ user, updateUser });
 	} catch (error) {
 		response.status(400).json({ error });
 	}

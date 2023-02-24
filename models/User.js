@@ -25,6 +25,10 @@ const schema = new mongoose.Schema(
 			type: String,
 			trim: true,
 		},
+		isOnline: {
+			type: Boolean,
+			default: false,
+		},
 		contacts: [
 			{
 				type: Array,
