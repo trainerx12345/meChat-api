@@ -81,8 +81,8 @@ router.put('/password/:id', async (request, response) => {
 router.put('/offline/:id', async (request, response) => {
 	const user = await User.findOne({ _id: request.params.id }).exec();
 	try {
-		const updateUser = await User.updateOne({ isOnline: false });
-		response.status(204).send({ user, updateUser });
+		const updateUser = await user.updateOne({ isOnline: false });
+		response.send({ updateUser, user });
 	} catch (error) {
 		response.status(400).json({ error });
 	}

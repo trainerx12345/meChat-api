@@ -32,7 +32,7 @@ const schema = new mongoose.Schema(
 		contacts: [
 			{
 				type: Array,
-				ref: 'Users',
+				ref: 'User',
 				autopopulate: true,
 				default: [],
 			},

@@ -15,6 +15,7 @@ router.get('/', async (request, response) => {
 //Fetch a User
 router.get('/:id', async (request, response) => {
 	User.findOne({ _id: request.params.id })
+		.populate('contacts')
 		.then((result) => response.status(200).send(result))
 		.catch((error) => response.status(404).send(error));
 });
