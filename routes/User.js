@@ -14,22 +14,29 @@ router.get('/', async (request, response) => {
 
 //Fetch a User
 router.get('/:id', async (request, response) => {
-	User.findOne({ _id: request.params.id })
-		.populate('contacts')
+	await User.findOne({ _id: request.params.id })
+		.then((result) => response.status(200).send(result))
+		.catch((error) => response.status(404).send(error));
+});
+
+//Fetch a User
+router.get('/email/:email', async (request, response) => {
+	await User.findOne({ email: request.params.email })
 		.then((result) => response.status(200).send(result))
 		.catch((error) => response.status(404).send(error));
 });
 
 //Update a  User
-router.put('/:id', async (request, response) => {
+router.put('/:id/:uid', async (request, response) => {
 	try {
 		const updateUser = await User.updateOne(
 			{ _id: request.params.id },
-			{ $set: request.body },
+			{ $push: { contacts: request.params.uid } },
 		)
 			.then((result) => {
 				if (result.modifiedCount === 1) {
 					response.status(204).send(result);
+					// console.log(result);
 				}
 			})
 			.catch((error) => response.status(404).send(error));

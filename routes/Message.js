@@ -4,33 +4,33 @@ const Message = require('../models/Message.js');
 
 //Fetch a Message
 router.get('/:id', async (request, response) => {
-	Exam.findOne({ _id: request.params.id })
+	Message.findOne({ _id: request.params.id })
 		.then((result) => response.status(200).send(result))
 		.catch((error) => response.status(404).send(error));
 });
 
 //Fetch all the messages
-router.get('/', async (request, response) => {
-	const { messageId } = request.body;
-	try {
-		const result = await Message.find({ messageId }).toArray();
-		response.status(201).send({ result });
-	} catch (error) {
-		response.status(400).json({ error });
-	}
+router.get('/:userId/:correspondingUserId', async (request, response) => {
+	await Message.find({
+		from_userId: request.params.userId,
+		to_userId: request.params.correspondingUserId,
+	})
+		.then((result) => response.status(200).send(result))
+		.catch((error) => response.status(404).send(error));
 });
 
 // Add a Message to the conversation
-router.post('/', async (req, res) => {
-	const { messageId } = request.body;
-	const result = await Message.findOne({ messageId }).exec();
-	if (!result) {
-		return response.status(404).json('No Message present');
-	}
+router.post('/', async (request, response) => {
+	const { message } = request.body;
 	try {
-		return response.status(201).send({ result });
+		const newMessage = await Message({
+			...message,
+		});
+		newMessage.save();
+		return response.status(201).send({ newMessage });
 	} catch (error) {
 		response.status(400).json({ status: 'Bad Request' });
 	}
 });
-module.exports =  router;
+
+module.exports = router;

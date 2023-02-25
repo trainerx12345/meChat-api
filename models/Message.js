@@ -13,17 +13,13 @@ const schema = new mongoose.Schema(
 		},
 		from_userId: {
 			type: mongoose.ObjectId,
-			ref: 'Users',
+			ref: 'User',
 			autopopulate: true,
 		},
 		to_userId: {
 			type: mongoose.ObjectId,
-			ref: 'Users',
+			ref: 'User',
 			autopopulate: true,
-		},
-		message: {
-			type: String,
-			trim: true,
 		},
 	},
 	{

@@ -31,10 +31,9 @@ const schema = new mongoose.Schema(
 		},
 		contacts: [
 			{
-				type: Array,
+				type: mongoose.Schema.Types.ObjectId,
 				ref: 'User',
 				autopopulate: true,
-				default: [],
 			},
 		],
 	},

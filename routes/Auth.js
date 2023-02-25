@@ -57,7 +57,7 @@ router.post('/login', async (request, response) => {
 	try {
 		if (user && passwordValid) {
 			const userId = user._id;
-			await User.updateOne({ isOnline: true });
+			await user.updateOne({ isOnline: true });
 			return response.status(201).send({ userId, user });
 		}
 		return response.status(400).json('Invalid Credentials');
